@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 1.7: Emprendimiento Colaborativo</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Poppins & Nunito -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pastelPink: '#FFD1DC',
+                        pastelRose: '#F4C2C2',
+                        pastelCream: '#FFF9F0',
+                        pastelMint: '#E0F2FE',
+                        pastelLavender: '#E6E6FA',
+                        pastelGreen: '#D4EDDA',
+                        softPurple: '#9370DB',
+                        catDark: '#4A4A4A',
+                        brandPrimary: '#D87093'
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FFF9F0;
+            color: #4A4A4A;
+        }
+        .flower-pattern {
+            background-image: radial-gradient(#F4C2C2 15%, transparent 16%), radial-gradient(#E0F2FE 15%, transparent 16%);
+            background-size: 60px 60px;
+            background-position: 0 0, 30px 30px;
+        }
+        .floating-element {
+            animation: float 4s ease-in-out infinite;
+        }
+        .floating-delayed {
+            animation: float 4s ease-in-out 2s infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(3deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            border: 2px solid rgba(244, 194, 194, 0.4);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FFF9F0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #F4C2C2;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D87093;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-pastelRose selection:text-white">
+
+    <!-- NAV BAR -->
+    <nav class="sticky top-0 z-50 glass-card shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-pastelRose rounded-full flex items-center justify-center text-white text-2xl shadow-md transform hover:rotate-12 transition-transform">
+                        <i class="fa-solid fa-cat"></i>
+                    </div>
+                    <div>
+                        <span class="font-heading text-xl font-bold text-gray-800 tracking-wide block">Módulo 1.7</span>
+                        <span class="text-xs text-brandPrimary font-semibold">Emprendimiento Colaborativo</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-6">
+                    <a href="#inicio" class="text-gray-700 hover:text-brandPrimary px-3 py-2 rounded-full font-medium transition-colors hover:bg-white/60">Inicio</a>
+                    <a href="#video" class="text-gray-700 hover:text-brandPrimary px-3 py-2 rounded-full font-medium transition-colors hover:bg-white/60">Vídeo Institucional</a>
+                    <a href="#contenido" class="text-gray-700 hover:text-brandPrimary px-3 py-2 rounded-full font-medium transition-colors hover:bg-white/60">Contenido</a>
+                    <a href="#equipo" class="text-gray-700 hover:text-brandPrimary px-3 py-2 rounded-full font-medium transition-colors hover:bg-white/60">Equipo</a>
+                    <a href="#rubrica" class="text-gray-700 hover:text-brandPrimary px-3 py-2 rounded-full font-medium transition-colors hover:bg-white/60">Rúbrica Interactiva</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="p-2 rounded-md text-gray-700 hover:text-brandPrimary focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-4 space-y-2 bg-white/95 border-b border-pastelPink">
+            <a href="#inicio" class="block text-gray-700 hover:text-brandPrimary py-2 font-medium">Inicio</a>
+            <a href="#video" class="block text-gray-700 hover:text-brandPrimary py-2 font-medium">Vídeo Institucional</a>
+            <a href="#contenido" class="block text-gray-700 hover:text-brandPrimary py-2 font-medium">Contenido</a>
+            <a href="#equipo" class="block text-gray-700 hover:text-brandPrimary py-2 font-medium">Equipo</a>
+            <a href="#rubrica" class="block text-gray-700 hover:text-brandPrimary py-2 font-medium">Rúbrica Interactiva</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="relative overflow-hidden py-16 lg:py-24 flower-pattern">
+        <!-- SVG Decorative Cat Left -->
+        <div class="hidden lg:block absolute left-4 top-1/3 floating-element opacity-80 pointer-events-none">
+            <svg width="120" height="120" viewBox="0 0 100 100" fill="none">
+                <circle cx="50" cy="50" r="45" fill="#FFD1DC"/>
+                <path d="M25 30 L35 15 L45 35 Z" fill="#D87093"/>
+                <path d="M75 30 L65 15 L55 35 Z" fill="#D87093"/>
+                <circle cx="38" cy="48" r="4" fill="#4A4A4A"/>
+                <circle cx="62" cy="48" r="4" fill="#4A4A4A"/>
+                <polygon points="50,55 46,60 54,60" fill="#D87093"/>
+                <path d="M42 63 Q50 68 58 63" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round"/>
+                <line x1="20" y1="50" x2="33" y2="52" stroke="#4A4A4A" stroke-width="1.5"/>
+                <line x1="20" y1="58" x2="33" y2="56" stroke="#4A4A4A" stroke-width="1.5"/>
+                <line x1="80" y1="50" x2="67" y2="52" stroke="#4A4A4A" stroke-width="1.5"/>
+                <line x1="80" y1="58" x2="67" y2="56" stroke="#4A4A4A" stroke-width="1.5"/>
+            </svg>
+        </div>
+
+        <!-- SVG Decorative Flower Right -->
+        <div class="hidden lg:block absolute right-6 top-1/4 floating-delayed opacity-80 pointer-events-none">
+            <svg width="140" height="140" viewBox="0 0 100 100">
+                <g transform="translate(50,50)">
+                    <circle cx="0" cy="-25" r="15" fill="#FFD1DC"/>
+                    <circle cx="25" cy="0" r="15" fill="#E0F2FE"/>
+                    <circle cx="0" cy="25" r="15" fill="#FFD1DC"/>
+                    <circle cx="-25" cy="0" r="15" fill="#E0F2FE"/>
+                    <circle cx="18" cy="18" r="15" fill="#E6E6FA"/>
+                    <circle cx="-18" cy="-18" r="15" fill="#E6E6FA"/>
+                    <circle cx="-18" cy="18" r="15" fill="#E6E6FA"/>
+                    <circle cx="18" cy="-18" r="15" fill="#E6E6FA"/>
+                    <circle cx="0" cy="0" r="16" fill="#FFF3CD"/>
+                </g>
+            </svg>
+        </div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="inline-flex items-center space-x-2 bg-white/90 border border-pastelPink px-4 py-2 rounded-full text-brandPrimary text-sm font-semibold mb-6 shadow-sm">
+                <span>🌸</span>
+                <span>Proyecto Integrador de Aprendizaje</span>
+                <span>🐾</span>
+            </div>
+            <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-800 tracking-tight leading-tight">
+                Módulo 1.7: <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">Emprendimiento Colaborativo</span>
+            </h1>
+            <p class="mt-4 text-xl sm:text-2xl font-bold text-gray-700 italic">
+                “¡Juntas construimos grandes ideas!”
+            </p>
+            <p class="mt-4 max-w-2xl mx-auto text-base sm:text-lg text-gray-600">
+                Aprender, crear y crecer en equipo. Una propuesta donde la creatividad, el liderazgo y los valores se unen para transformar nuestra comunidad.
+            </p>
+            
+            <div class="mt-8 flex flex-wrap justify-center gap-4">
+                <a href="#video" class="inline-flex items-center px-6 py-3.5 border border-transparent text-base font-medium rounded-full shadow-md text-white bg-gradient-to-r from-pink-400 to-purple-400 hover:from-pink-500 hover:to-purple-500 transition-all transform hover:-translate-y-0.5">
+                    <i class="fa-solid fa-play mr-2"></i> Ver Vídeo Institucional
+                </a>
+                <a href="#rubrica" class="inline-flex items-center px-6 py-3.5 border-2 border-pastelRose text-base font-medium rounded-full text-gray-700 bg-white hover:bg-pastelCream transition-all transform hover:-translate-y-0.5 shadow-sm">
+                    <i class="fa-solid fa-calculator mr-2 text-pink-500"></i> Evaluar con Rúbrica
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+
+        <!-- SECCIÓN VÍDEO -->
+        <section id="video" class="scroll-mt-24">
+            <div class="glass-card rounded-3xl p-6 sm:p-10 shadow-lg relative overflow-hidden border-2 border-pink-200">
+                <div class="text-center max-w-3xl mx-auto mb-8">
+                    <h2 class="font-heading text-3xl font-bold text-gray-800 flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-film text-pink-400"></i>
+                        Vídeo Institucional del Proyecto
+                    </h2>
+                    <p class="text-gray-600 mt-2">
+                        Presentación audiovisual del Módulo 1.7 - Aprendizaje, Creatividad y Liderazgo en Equipo.
+                    </p>
+                </div>
+
+                <!-- Marco decorativo gatuno para el vídeo -->
+                <div class="relative max-w-3xl mx-auto bg-gradient-to-r from-pink-200 via-purple-100 to-blue-200 p-4 sm:p-6 rounded-3xl shadow-inner">
+                    <div class="absolute -top-4 left-12 w-8 h-8 bg-pink-300 rounded-tl-lg transform -rotate-12 border border-white"></div>
+                    <div class="absolute -top-4 right-12 w-8 h-8 bg-pink-300 rounded-tr-lg transform rotate-12 border border-white"></div>
+                    
+                    <div class="relative aspect-video w-full rounded-2xl overflow-hidden bg-black shadow-lg flex items-center justify-center">
+                        <video controls class="w-full h-full object-contain bg-black">
+    <source src="WhatsApp Video 2026-11-02 at 11.42.54 AM.mp4" type="video/mp4">
+    Tu navegador no soporta la reproducción de video HTML5.
+</video>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN INTEGRANTES DEL EQUIPO -->
+        <section id="equipo" class="scroll-mt-24">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <span class="text-xs font-bold tracking-widest text-pink-500 uppercase">Liderazgo & Colaboración</span>
+                <h2 class="font-heading text-3xl font-extrabold text-gray-800 mt-1">
+                    Equipo de Trabajo 🐾
+                </h2>
+                <p class="text-gray-600 mt-2">
+                    Estudiantes colaboradoras comprometidas con la innovación y el desarrollo comunal.
+                </p>
+            </div>
+
+            <!-- TARJETA DESTACADA: DAYANA GUADALUPE MEMBREÑO -->
+            <div class="mb-10">
+                <div class="glass-card rounded-3xl p-8 border-4 border-pink-300 bg-gradient-to-r from-pink-50/80 via-purple-50/80 to-white shadow-xl relative overflow-hidden transform hover:-translate-y-1 transition-all">
+                    <div class="absolute top-0 right-0 bg-gradient-to-l from-pink-500 to-purple-500 text-white text-xs font-extrabold px-6 py-2 rounded-bl-2xl shadow-md tracking-wider">
+                        👑 LÍDER PRINCIPAL Y COORDINADORA ESTRATÉGICA
+                    </div>
+                    <div class="flex flex-col md:flex-row items-center gap-6 mt-4 md:mt-0">
+                        <!-- Círculo perfectamente centrado con flex -->
+                        <div class="w-28 h-28 bg-gradient-to-br from-pink-300 to-purple-400 rounded-full flex items-center justify-center text-4xl text-white border-4 border-white shadow-lg flex-shrink-0 mx-auto md:mx-0 leading-none select-none">
+                            <span class="inline-flex items-center justify-center w-full h-full text-center">👑🐱</span>
+                        </div>
+                        <div class="text-center md:text-left">
+                            <h3 class="font-heading text-2xl font-extrabold text-gray-800">
+                                Dayana Guadalupe Membreño
+                            </h3>
+                            <p class="text-pink-600 font-bold text-sm mb-3">
+                                Dirección General & Creación del Proyecto de Oportunidades de Negocio
+                            </p>
+                            <p class="text-gray-700 leading-relaxed text-sm">
+                                Responsable de articular la visión general del proyecto, liderar la toma de decisiones democráticas y coordinar el modelo estratégico de emprendimiento colaborativo. Es la pieza central en la identificación de oportunidades para transformar ideas en proyectos sustentables que benefician a la comunidad.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GRID CON LAS OTRAS 3 INTEGRANTES -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Alisson Alemán -->
+                <div class="glass-card rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300 border-2 border-pink-100">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-pink-200 rounded-full flex items-center justify-center text-3xl text-pink-600 border-4 border-white shadow-md leading-none select-none">
+                        <span>🌸🐱</span>
+                    </div>
+                    <h3 class="font-heading text-lg font-bold text-gray-800">Alisson Alemán</h3>
+                    <p class="text-xs font-semibold text-pink-500 mb-2">Investigación de Mercado</p>
+                    <p class="text-xs text-gray-500">Identificación de necesidades comunitarias y análisis del entorno local para generar empleo.</p>
+                </div>
+
+                <!-- Astrid Cruz -->
+                <div class="glass-card rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300 border-2 border-purple-100">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-purple-200 rounded-full flex items-center justify-center text-3xl text-purple-600 border-4 border-white shadow-md leading-none select-none">
+                        <span>🌼🐱</span>
+                    </div>
+                    <h3 class="font-heading text-lg font-bold text-gray-800">Astrid Cruz</h3>
+                    <p class="text-xs font-semibold text-purple-500 mb-2">Diseño y Documentación</p>
+                    <p class="text-xs text-gray-500">Estructuración técnica del proyecto, formato visual e integración de recursos dinámicos.</p>
+                </div>
+
+                <!-- Julissa García -->
+                <div class="glass-card rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300 border-2 border-blue-100">
+                    <div class="w-20 h-20 mx-auto mb-4 bg-blue-200 rounded-full flex items-center justify-center text-3xl text-blue-600 border-4 border-white shadow-md leading-none select-none">
+                        <span>🐾🐱</span>
+                    </div>
+                    <h3 class="font-heading text-lg font-bold text-gray-800">Julissa García</h3>
+                    <p class="text-xs font-semibold text-blue-500 mb-2">Liderazgo de Valores y Ética</p>
+                    <p class="text-xs text-gray-500">Promoción de la solidaridad, responsabilidad, puntualidad y compromiso ético del equipo.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN RÚBRICA DE EVALUACIÓN INTERACTIVA -->
+        <section id="rubrica" class="scroll-mt-24">
+            <div class="glass-card rounded-3xl p-6 sm:p-10 shadow-xl border-2 border-purple-200">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 pb-6 border-b border-gray-200">
+                    <div>
+                        <div class="inline-flex items-center space-x-2 bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-bold mb-2">
+                            <i class="fa-solid fa-clipboard-check"></i> Evaluación Oficial
+                        </div>
+                        <h2 class="font-heading text-3xl font-extrabold text-gray-800">
+                            Rúbrica de Calificación interactiva
+                        </h2>
+                        <p class="text-gray-600 text-sm mt-1">
+                            Selecciona una puntuación del 1 al 5 para cada criterio según la calidad del sitio.
+                        </p>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-pink-400 to-purple-500 text-white p-4 sm:p-6 rounded-2xl shadow-lg text-center flex-shrink-0 min-w-[200px]">
+                        <span class="text-xs uppercase tracking-wider font-semibold block">Nota Final Calculada</span>
+                        <div class="text-4xl font-extrabold my-1" id="score-display">10.0 / 10</div>
+                        <span class="text-xs bg-white/20 px-3 py-1 rounded-full inline-block font-medium" id="score-badge">¡Sobresaliente! 🌟</span>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-pink-100/70 text-gray-700 font-heading text-sm">
+                                <th class="p-4 rounded-tl-xl">#</th>
+                                <th class="p-4">Criterio de Evaluación</th>
+                                <th class="p-4 text-center">Nivel (1 - 5)</th>
+                                <th class="p-4 text-center rounded-tr-xl">Puntos</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100 text-sm text-gray-700" id="rubric-body">
+                            <!-- Filas dinámicas generadas por JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="mt-8 flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-gray-200">
+                    <button onclick="resetRubric()" class="inline-flex items-center px-4 py-2 rounded-xl text-sm font-semibold text-gray-600 bg-gray-100 hover:bg-gray-200 transition-colors">
+                        <i class="fa-solid fa-rotate-left mr-2"></i> Reiniciar Calificaciones
+                    </button>
+                    <div class="text-xs text-gray-500 italic flex items-center gap-2">
+                        <i class="fa-solid fa-circle-info text-purple-400"></i>
+                        <span>Nota estándar calculada promediando los 13 criterios sobre base 10.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white/80 border-t border-pink-200 mt-20 py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="flex items-center justify-center space-x-2 text-xl font-bold text-gray-800 mb-3">
+                <span class="text-pink-400">🌸</span>
+                <span>Módulo 1.7: Emprendimiento Colaborativo</span>
+                <span class="text-pink-400">🐾</span>
+            </div>
+            <p class="text-sm text-gray-500 mb-4">
+                Proyecto desarrollado por <strong>Dayana Membreño</strong>, <strong>Alisson Alemán</strong>, <strong>Astrid Cruz</strong> y <strong>Julissa García</strong>.
+            </p>
+            <p class="text-xs text-gray-400">
+                &copy; 2026 Proyecto Educativo • Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT DE LÓGICA DE LA RÚBRICA INTERACTIVA -->
+    <script>
+        const rubricData = [
+            { id: 1, text: "Jerarquía lógica y navegación intuitiva (en 3 clics o menos)." },
+            { id: 2, text: "Visualización perfecta y funcional en escritorio, tablet y móvil." },
+            { id: 3, text: "Carga de archivos integrados (Drive/documentos) sin errores de permisos." },
+            { id: 4, text: "Inserción exitosa de al menos 3 tipos de contenido dinámico (imágenes, GIFs, vídeo)." },
+            { id: 5, text: "Sitio publicado correctamente con URL accesible públicamente." },
+            { id: 6, text: "Uso correcto de jerarquía de encabezados (Título, Encabezado, Subencabezado)." },
+            { id: 7, text: "Texto claro, conciso, libre de errores ortográficos y lenguaje profesional." },
+            { id: 8, text: "Presentación visual organizada de información (tablas, gráficos, listas)." },
+            { id: 9, text: "Combinación de fuentes y colores con alto contraste para lectura rápida." },
+            { id: 10, text: "Paleta de colores y estilo de fuente consistente en todo el sitio." },
+            { id: 11, text: "Imágenes e ilustraciones de alta resolución y alineación adecuada." },
+            { id: 12, text: "Uso efectivo del espacio en blanco (whitespace) para un diseño limpio." },
+            { id: 13, text: "Uso combinado de medios creativo y pertinente que eleva el valor." }
+        ];
+
+        let scores = Array(rubricData.length).fill(5);
+
+        function renderRubricTable() {
+            const tbody = document.getElementById('rubric-body');
+            tbody.innerHTML = '';
+
+            rubricData.forEach((item, index) => {
+                const tr = document.createElement('tr');
+                tr.className = index % 2 === 0 ? 'bg-white/50 hover:bg-pink-50/50' : 'bg-pink-50/20 hover:bg-pink-50/50';
+
+                tr.innerHTML = `
+                    <td class="p-4 font-bold text-purple-600">${item.id}</td>
+                    <td class="p-4 text-gray-700 font-medium">${item.text}</td>
+                    <td class="p-4 text-center">
+                        <select onchange="updateScore(${index}, this.value)" class="bg-white border border-pink-200 rounded-lg px-3 py-1 font-semibold text-gray-700 focus:ring-2 focus:ring-pink-300 focus:outline-none cursor-pointer">
+                            <option value="5" ${scores[index] === 5 ? 'selected' : ''}>5 - Sobresaliente</option>
+                            <option value="4" ${scores[index] === 4 ? 'selected' : ''}>4 - Notable</option>
+                            <option value="3" ${scores[index] === 3 ? 'selected' : ''}>3 - Bueno</option>
+                            <option value="2" ${scores[index] === 2 ? 'selected' : ''}>2 - Suficiente</option>
+                            <option value="1" ${scores[index] === 1 ? 'selected' : ''}>1 - Insuficiente</option>
+                        </select>
+                    </td>
+                    <td class="p-4 text-center font-bold text-gray-800" id="score-val-${index}">
+                        ${scores[index]} pts
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            calculateTotal();
+        }
+
+        function updateScore(index, value) {
+            scores[index] = parseInt(value);
+            document.getElementById(`score-val-${index}`).innerText = `${value} pts`;
+            calculateTotal();
+        }
+
+        function calculateTotal() {
+            const sum = scores.reduce((acc, curr) => acc + curr, 0);
+            const maxPossible = rubricData.length * 5;
+            const finalGrade = ((sum / maxPossible) * 10).toFixed(1);
+
+            const display = document.getElementById('score-display');
+            const badge = document.getElementById('score-badge');
+
+            display.innerText = `${finalGrade} / 10`;
+
+            if (finalGrade >= 9.0) {
+                badge.innerText = '¡Sobresaliente! 🌟';
+                badge.className = 'text-xs bg-emerald-400/30 text-white px-3 py-1 rounded-full inline-block font-medium';
+            } else if (finalGrade >= 7.5) {
+                badge.innerText = 'Notable 👍';
+                badge.className = 'text-xs bg-blue-400/30 text-white px-3 py-1 rounded-full inline-block font-medium';
+            } else if (finalGrade >= 6.0) {
+                badge.innerText = 'Bueno 👌';
+                badge.className = 'text-xs bg-yellow-400/30 text-white px-3 py-1 rounded-full inline-block font-medium';
+            } else {
+                badge.innerText = 'Requiere Revisión ⚠️';
+                badge.className = 'text-xs bg-red-400/30 text-white px-3 py-1 rounded-full inline-block font-medium';
+            }
+        }
+
+        function resetRubric() {
+            scores = Array(rubricData.length).fill(5);
+            renderRubricTable();
+        }
+
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        window.onload = function() {
+            renderRubricTable();
+        };
+    </script>
+</body>
+</html>
